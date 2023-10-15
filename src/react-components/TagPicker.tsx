@@ -16,12 +16,11 @@ const TagPicker = () => {
   };
 
   return (
-    <main className="h-screen w-full grid grid-cols-10 relative bg-black">
+    <main className="h-screen w-full grid grid-cols-10 grid-rows-6 gap-16 relative bg-black">
       <TagCardLeft
         onBadgeSelect={handleBadgeSelect}
         onBadgeDeselect={handleBadgeDeselect}
         selectedBadges={selectedBadges}
-        className="col-start-4 top-80 absolute"
       />
       <TagCardRight
         selectedBadges={selectedBadges}

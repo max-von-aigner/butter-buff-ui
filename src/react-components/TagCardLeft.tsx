@@ -43,11 +43,11 @@ const TagCard: React.FC<
   };
 
   return (
-    <Card className="w-[23rem] h-[30rem] top-80 absolute">
+    <Card className=" col-start-4 col-span-2 row-start-2 row-span-3">
       <CardHeader>
-        <CardTitle className=" text-center">Select your Sports!</CardTitle>
+        <CardTitle className=" text-center">Select Items!</CardTitle>
         <CardDescription className=" text-center">
-          Select the topics, you want to learn more about
+          Pick all the items, you want to add
         </CardDescription>
       </CardHeader>
       <CardContent className="">
@@ -60,18 +60,20 @@ const TagCard: React.FC<
           "American Football",
           "Cricket",
           "Table Tennis" /* Add more sports */,
-        ].map((sport) => (
-          <Badge
-            key={sport}
-            variant={selectedBadges.includes(sport) ? "default" : "secondary"}
-            className={`text-lg m-2 cursor-pointer ${
-              selectedBadges.includes(sport) && "opacity-50"
-            }`}
-            onClick={() => handleBadgeClick(sport)}
-          >
-            {sport}
-          </Badge>
-        ))}
+        ]
+          .filter((sport) => !selectedBadges.includes(sport)) // Filtering out the selected badges
+          .map((sport) => (
+            <Badge
+              key={sport}
+              variant={selectedBadges.includes(sport) ? "default" : "secondary"}
+              className={`text-lg m-2 cursor-pointer ${
+                selectedBadges.includes(sport) && "opacity-50"
+              }`}
+              onClick={() => handleBadgeClick(sport)}
+            >
+              {sport}
+            </Badge>
+          ))}
       </CardContent>
     </Card>
   );

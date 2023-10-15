@@ -30,9 +30,10 @@ const TagCardRight: React.FC<TagCardProps & { selectedBadges: string[] }> = ({
   selectedBadges,
 }) => {
   return (
-    <Card className="w-[23rem] h-[30rem] col-start-6 top-80 absolute">
+    <Card className="col-start-6 col-span-2 row-start-2 row-span-3 ">
+      {/* min-w-[20rem] min-h-[30rem] */}
       <CardHeader>
-        <CardTitle>Selected Sports</CardTitle>
+        <CardTitle className=" text-center">Selected Items</CardTitle>
       </CardHeader>
       <CardContent>
         {selectedBadges.map((badge) => (
