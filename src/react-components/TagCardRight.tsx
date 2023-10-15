@@ -21,25 +21,52 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 
-interface TagCardProps {
+import { motion, AnimatePresence, useSpring } from "framer-motion";
+
+interface TagCardRightProps {
   className?: string;
+  selectedBadges: string[];
+  onBadgeDeselect: (badgeName: string) => void;
 }
 
-const TagCardRight: React.FC<TagCardProps & { selectedBadges: string[] }> = ({
-  className,
-  selectedBadges,
-}) => {
+const TagCardRight: React.FC<
+  TagCardRightProps & { selectedBadges: string[] }
+> = ({ className, selectedBadges, onBadgeDeselect }) => {
   return (
     <Card className="col-start-6 col-span-2 row-start-2 row-span-3 ">
-      {/* min-w-[20rem] min-h-[30rem] */}
       <CardHeader>
-        <CardTitle className=" text-center">Selected Items</CardTitle>
+        <CardTitle className="text-center">Selected Sports</CardTitle>
       </CardHeader>
       <CardContent>
         {selectedBadges.map((badge) => (
-          <Badge key={badge} variant="default" className="text-lg m-2">
-            {badge}
-          </Badge>
+          <AnimatePresence>
+            <motion.div
+              key="sport"
+              // initial={{ opacity: 0 }}
+              // animate={{
+              //   opacity: 1,
+              //   scale: [1, 1.2, 1.2, 1, 1],
+              // rotate: [0, 0, 180, 180, 0],
+              // borderRadius: ["0%", "0%", "50%", "50%", "0%"],
+              // }}
+              // exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.4,
+                type: "spring",
+                stiffness: 400,
+                damping: 10,
+              }}
+            >
+              <Badge
+                key={badge}
+                variant="default"
+                className="text-lg m-2 cursor-pointer"
+                onClick={() => onBadgeDeselect(badge)}
+              >
+                {badge}
+              </Badge>
+            </motion.div>
+          </AnimatePresence>
         ))}
       </CardContent>
     </Card>

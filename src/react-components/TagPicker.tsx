@@ -24,7 +24,7 @@ const TagPicker = () => {
       />
       <TagCardRight
         selectedBadges={selectedBadges}
-        className="col-start-8 top-80 absolute"
+        onBadgeDeselect={handleBadgeDeselect}
       />
     </main>
   );

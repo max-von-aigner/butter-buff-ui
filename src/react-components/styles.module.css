@@ -1,0 +1,18 @@
+body {
+  background: #222;
+  margin: 0;
+}
+
+.app {
+  font-family: sans-serif;
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  perspective: 1000px;
+  overflow: hidden;
+}
