@@ -21,13 +21,29 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 
+import { useState } from "react";
+
 interface TagCardProps {
   className?: string;
 }
 
-const TagCard: React.FC<TagCardProps> = ({ className }) => {
+const TagCard: React.FC<
+  TagCardProps & {
+    onBadgeSelect: (badgeName: string) => void;
+    onBadgeDeselect: (badgeName: string) => void;
+    selectedBadges: string[];
+  }
+> = ({ className, onBadgeSelect, onBadgeDeselect, selectedBadges }) => {
+  const handleBadgeClick = (badgeName: string) => {
+    if (selectedBadges.includes(badgeName)) {
+      onBadgeDeselect(badgeName);
+    } else {
+      onBadgeSelect(badgeName);
+    }
+  };
+
   return (
-    <Card className="w-[23rem] h-[30rem] col-start-4 top-80 absolute">
+    <Card className="w-[23rem] h-[30rem] top-80 absolute">
       <CardHeader>
         <CardTitle className=" text-center">Select your Sports!</CardTitle>
         <CardDescription className=" text-center">
@@ -35,42 +51,27 @@ const TagCard: React.FC<TagCardProps> = ({ className }) => {
         </CardDescription>
       </CardHeader>
       <CardContent className="">
-        <Badge variant="secondary" className="text-lg m-2 justify-center">
-          Basketball
-        </Badge>
-        <Badge variant="secondary" className="text-lg m-2">
-          Football
-        </Badge>
-        <Badge variant="secondary" className="text-lg m-2">
-          Tennis
-        </Badge>
-        <Badge variant="secondary" className="text-lg m-2">
-          Martial Arts
-        </Badge>
-        <Badge variant="secondary" className="text-lg m-2">
-          Ice Hockey
-        </Badge>
-        <Badge variant="secondary" className="text-lg m-2">
-          Motorsports
-        </Badge>
-        <Badge variant="secondary" className="text-lg m-2">
-          American Football
-        </Badge>
-        <Badge variant="secondary" className="text-lg m-2">
-          Golf
-        </Badge>
-        <Badge variant="secondary" className="text-lg m-2">
-          Volleyball
-        </Badge>
-        <Badge variant="secondary" className="text-lg m-2">
-          Cricket
-        </Badge>
-        <Badge variant="secondary" className="text-lg m-2">
-          Baseball
-        </Badge>
-        <Badge variant="secondary" className="text-lg m-2">
-          Tabel Tennis
-        </Badge>
+        {[
+          "Basketball",
+          "Football",
+          "Tennis",
+          "Volleyball",
+          "Baseball",
+          "American Football",
+          "Cricket",
+          "Table Tennis" /* Add more sports */,
+        ].map((sport) => (
+          <Badge
+            key={sport}
+            variant={selectedBadges.includes(sport) ? "default" : "secondary"}
+            className={`text-lg m-2 cursor-pointer ${
+              selectedBadges.includes(sport) && "opacity-50"
+            }`}
+            onClick={() => handleBadgeClick(sport)}
+          >
+            {sport}
+          </Badge>
+        ))}
       </CardContent>
     </Card>
   );
