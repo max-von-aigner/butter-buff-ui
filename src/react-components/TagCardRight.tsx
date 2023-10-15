@@ -19,16 +19,20 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function TagCard() {
+interface TagCardProps {
+  className?: string;
+}
+
+const TagCardRight: React.FC<TagCardProps> = ({ className }) => {
   return (
-    <Card className="w-[30rem]">
+    <Card className="w-[23rem] h-[30rem] col-start-6 top-80 absolute">
       <CardHeader>
-        <CardTitle className=" text-center">
+        {/* <CardTitle className=" text-center">
           Tell me what you're into!
         </CardTitle>
         <CardDescription className=" text-center">
           Select the topics, you want to learn more about
-        </CardDescription>
+        </CardDescription> */}
       </CardHeader>
       <CardContent>
         {/* <form>
@@ -54,10 +58,12 @@ export function TagCard() {
           </div>
         </form> */}
       </CardContent>
-      <CardFooter className="flex justify-between">
+      {/* <CardFooter className="flex justify-between">
         <Button variant="outline">Cancel</Button>
         <Button>Deploy</Button>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
-}
+};
+
+export default TagCardRight;
