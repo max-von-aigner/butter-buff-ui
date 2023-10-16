@@ -23,6 +23,9 @@ import { Badge } from "@/components/ui/badge";
 
 import { useState } from "react";
 
+import { motion, AnimatePresence, useSpring } from "framer-motion";
+import { exit } from "process";
+
 interface TagCardProps {
   className?: string;
 }
@@ -40,6 +43,30 @@ const TagCard: React.FC<
     } else {
       onBadgeSelect(badgeName);
     }
+  };
+
+  const dropIn = {
+    hidden: {
+      // x: "50vw",
+      // opacity: 0,
+      scale: 0,
+    },
+    visible: {
+      // x: "0",
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.1,
+        type: "spring",
+        damping: 20,
+        stiffness: 200,
+      },
+      exit: {
+        y: "-100vh",
+        opacity: 0,
+        scale: 0.1,
+      },
+    },
   };
 
   return (
@@ -63,16 +90,33 @@ const TagCard: React.FC<
         ]
           .filter((sport) => !selectedBadges.includes(sport)) // Filtering out the selected badges
           .map((sport) => (
-            <Badge
-              key={sport}
-              variant={selectedBadges.includes(sport) ? "default" : "secondary"}
-              className={`text-lg m-2 cursor-pointer ${
-                selectedBadges.includes(sport) && "opacity-50"
-              }`}
-              onClick={() => handleBadgeClick(sport)}
+            <motion.div
+              variants={dropIn}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              style={{ display: "inline-block" }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9, y: "-5px" }}
             >
-              {sport}
-            </Badge>
+              <Badge
+                key={sport}
+                // variant={
+                //   selectedBadges.includes(sport) ? "default" : "secondary"
+                // }
+                variant={"secondary"}
+                className={`text-lg m-2 cursor-pointer ${
+                  selectedBadges.includes(sport) && "opacity-50"
+                }`}
+                onClick={() => handleBadgeClick(sport)}
+              >
+                {/* <AnimatePresence> */}
+                {/* <motion.div exit={{ y: "-100vh", opacity: 0, scale: 0.1 }}> */}
+                {sport}
+                {/* </motion.div> */}
+                {/* </AnimatePresence> */}
+              </Badge>
+            </motion.div>
           ))}
       </CardContent>
     </Card>

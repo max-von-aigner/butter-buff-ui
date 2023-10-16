@@ -22,12 +22,32 @@ import {
 import { Badge } from "@/components/ui/badge";
 
 import { motion, AnimatePresence, useSpring } from "framer-motion";
+import { Scale } from "lucide-react";
 
 interface TagCardRightProps {
   className?: string;
   selectedBadges: string[];
   onBadgeDeselect: (badgeName: string) => void;
 }
+
+const dropIn = {
+  hidden: {
+    // x: "50vw",
+    // opacity: 0,
+    scale: 0,
+  },
+  visible: {
+    // x: "0",
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.1,
+      type: "spring",
+      damping: 20,
+      stiffness: 200,
+    },
+  },
+};
 
 const TagCardRight: React.FC<
   TagCardRightProps & { selectedBadges: string[] }
@@ -39,34 +59,28 @@ const TagCardRight: React.FC<
       </CardHeader>
       <CardContent>
         {selectedBadges.map((badge) => (
-          <AnimatePresence>
+          <>
+            {/* <AnimatePresence initial={false}> */}
             <motion.div
-              key="sport"
-              // initial={{ opacity: 0 }}
-              // animate={{
-              //   opacity: 1,
-              //   scale: [1, 1.2, 1.2, 1, 1],
-              // rotate: [0, 0, 180, 180, 0],
-              // borderRadius: ["0%", "0%", "50%", "50%", "0%"],
-              // }}
-              // exit={{ opacity: 0 }}
-              transition={{
-                duration: 0.4,
-                type: "spring",
-                stiffness: 400,
-                damping: 10,
-              }}
+              variants={dropIn}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              style={{ display: "inline-block" }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9, y: "5px" }}
             >
               <Badge
                 key={badge}
-                variant="default"
+                variant="secondary"
                 className="text-lg m-2 cursor-pointer"
                 onClick={() => onBadgeDeselect(badge)}
               >
                 {badge}
               </Badge>
             </motion.div>
-          </AnimatePresence>
+            {/* </AnimatePresence> */}
+          </>
         ))}
       </CardContent>
     </Card>
