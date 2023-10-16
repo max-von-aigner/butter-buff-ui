@@ -77,7 +77,7 @@ const TagCard: React.FC<TagCardProps> = ({
   };
 
   return (
-    <Card className=" col-start-4 col-span-2 row-start-2 row-span-3">
+    <Card className=" col-start-3 col-span-3 row-start-3 row-span-4 bg-opacity-50 backdrop-blur-md">
       <CardHeader>
         <CardTitle className=" text-center text-zinc-800 ">
           Select Sports
@@ -88,27 +88,24 @@ const TagCard: React.FC<TagCardProps> = ({
         <Separator />
       </CardHeader>
 
-      {/* <CardContent className="">
-        {deselectedBadges?.filter((badge) => !selectedBadges.includes(badge)) ||
-          [].map((badge) => ( */}
-      {/* // <motion.div */}
-      {/* //   variants={dropIn}
-            //   initial="hidden"
-            //   animate="visible"
-            //   style={{ display: "inline-block" }}
-            //   whileHover={{ scale: 1.1 }}
-            // > */}
-
       <CardContent>
         {orderedDeselectedBadges.map((badge) => (
-          <Badge
-            key={badge}
-            variant={"secondary"}
-            className={`text-zinc-800 text-lg m-2 cursor-pointer`}
-            onClick={() => handleBadgeClick(badge)}
+          <motion.div
+            variants={dropIn}
+            initial="hidden"
+            animate="visible"
+            style={{ display: "inline-block" }}
+            whileHover={{ scale: 1.1 }}
           >
-            {badge}
-          </Badge>
+            <Badge
+              key={badge}
+              variant={"secondary"}
+              className={`text-zinc-800 text-lg m-2 cursor-pointer`}
+              onClick={() => handleBadgeClick(badge)}
+            >
+              {badge}
+            </Badge>
+          </motion.div>
         ))}
       </CardContent>
     </Card>

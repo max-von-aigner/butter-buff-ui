@@ -60,7 +60,7 @@ const TagCardRight: React.FC<
   TagCardRightProps & { selectedBadges: string[] }
 > = ({ className, selectedBadges, onBadgeDeselect }) => {
   return (
-    <Card className="col-start-6 col-span-2 row-start-2 row-span-3 ">
+    <Card className="col-start-6 col-span-3 row-start-3 row-span-4">
       <CardHeader>
         <CardTitle className="text-center text-zinc-800 ">
           Your Sports
@@ -71,22 +71,22 @@ const TagCardRight: React.FC<
 
       <CardContent>
         {selectedBadges.map((badge) => (
-          // <motion.div
-          //   variants={dropIn}
-          //   initial="hidden"
-          //   animate="visible"
-          //   style={{ display: "inline-block" }}
-          //   whileHover={{ scale: 1.1 }}
-          // >
-          <Badge
-            key={badge}
-            variant="secondary"
-            className="text-zinc-800 text-lg m-2 cursor-pointer"
-            onClick={() => onBadgeDeselect(badge)}
+          <motion.div
+            variants={dropIn}
+            initial="hidden"
+            animate="visible"
+            style={{ display: "inline-block" }}
+            whileHover={{ scale: 1.1 }}
           >
-            {badge}
-          </Badge>
-          // </motion.div>
+            <Badge
+              key={badge}
+              variant="secondary"
+              className="text-zinc-800 text-lg m-2 cursor-pointer "
+              onClick={() => onBadgeDeselect(badge)}
+            >
+              {badge}
+            </Badge>
+          </motion.div>
         ))}
       </CardContent>
     </Card>

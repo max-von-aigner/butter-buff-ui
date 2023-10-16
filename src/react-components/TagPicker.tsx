@@ -39,7 +39,7 @@ const TagPicker = () => {
   console.log("TagPicker rendered!");
 
   return (
-    <main className="h-screen w-full grid grid-cols-10 grid-rows-6 gap-16 relative bg-black">
+    <main className="h-screen w-full grid grid-cols-10 grid-rows-8 gap-16 relative bg-gradient-to-r from-cyan-500 to-blue-500 ">
       <TagCardLeft
         onBadgeSelect={handleBadgeSelect}
         onBadgeDeselect={handleBadgeDeselect}
