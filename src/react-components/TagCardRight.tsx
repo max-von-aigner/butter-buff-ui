@@ -20,8 +20,15 @@ import {
 } from "@/components/ui/select";
 
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
-import { motion, AnimatePresence, useSpring } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useSpring,
+  easeIn,
+  easeInOut,
+} from "framer-motion";
 import { Scale } from "lucide-react";
 
 interface TagCardRightProps {
@@ -33,7 +40,7 @@ interface TagCardRightProps {
 const dropIn = {
   hidden: {
     // x: "50vw",
-    // opacity: 0,
+    opacity: 0,
     scale: 0,
   },
   visible: {
@@ -55,32 +62,31 @@ const TagCardRight: React.FC<
   return (
     <Card className="col-start-6 col-span-2 row-start-2 row-span-3 ">
       <CardHeader>
-        <CardTitle className="text-center">Selected Sports</CardTitle>
+        <CardTitle className="text-center text-zinc-800 ">
+          Your Sports
+        </CardTitle>
+        <CardDescription className=" text-center"></CardDescription>
+        <Separator />
       </CardHeader>
+
       <CardContent>
         {selectedBadges.map((badge) => (
-          <>
-            {/* <AnimatePresence initial={false}> */}
-            <motion.div
-              variants={dropIn}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              style={{ display: "inline-block" }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9, y: "5px" }}
-            >
-              <Badge
-                key={badge}
-                variant="secondary"
-                className="text-lg m-2 cursor-pointer"
-                onClick={() => onBadgeDeselect(badge)}
-              >
-                {badge}
-              </Badge>
-            </motion.div>
-            {/* </AnimatePresence> */}
-          </>
+          // <motion.div
+          //   variants={dropIn}
+          //   initial="hidden"
+          //   animate="visible"
+          //   style={{ display: "inline-block" }}
+          //   whileHover={{ scale: 1.1 }}
+          // >
+          <Badge
+            key={badge}
+            variant="secondary"
+            className="text-zinc-800 text-lg m-2 cursor-pointer"
+            onClick={() => onBadgeDeselect(badge)}
+          >
+            {badge}
+          </Badge>
+          // </motion.div>
         ))}
       </CardContent>
     </Card>

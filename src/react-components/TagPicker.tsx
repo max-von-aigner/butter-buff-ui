@@ -13,6 +13,7 @@ const TagPicker = () => {
 
   const handleBadgeDeselect = (badgeName: string) => {
     setSelectedBadges(selectedBadges.filter((badge) => badge !== badgeName));
+    console.log("badge deselected");
   };
 
   return (

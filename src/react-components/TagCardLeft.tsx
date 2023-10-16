@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/select";
 
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 import { useState } from "react";
 
@@ -45,10 +46,12 @@ const TagCard: React.FC<
     }
   };
 
+  // const MotionBadge = motion(Badge)
+
   const dropIn = {
     hidden: {
       // x: "50vw",
-      // opacity: 0,
+      opacity: 0,
       scale: 0,
     },
     visible: {
@@ -72,11 +75,15 @@ const TagCard: React.FC<
   return (
     <Card className=" col-start-4 col-span-2 row-start-2 row-span-3">
       <CardHeader>
-        <CardTitle className=" text-center">Select Items!</CardTitle>
+        <CardTitle className=" text-center text-zinc-800 ">
+          Select Sports
+        </CardTitle>
         <CardDescription className=" text-center">
-          Pick all the items, you want to add
+          Pick all the sports you want to see content of!
         </CardDescription>
+        <Separator />
       </CardHeader>
+
       <CardContent className="">
         {[
           "Basketball",
@@ -90,33 +97,24 @@ const TagCard: React.FC<
         ]
           .filter((sport) => !selectedBadges.includes(sport)) // Filtering out the selected badges
           .map((sport) => (
-            <motion.div
-              variants={dropIn}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              style={{ display: "inline-block" }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9, y: "-5px" }}
+            // <motion.div
+            //   variants={dropIn}
+            //   initial="hidden"
+            //   animate="visible"
+            //   style={{ display: "inline-block" }}
+            //   whileHover={{ scale: 1.1 }}
+            // >
+            <Badge
+              key={sport}
+              variant={selectedBadges.includes(sport) ? "default" : "secondary"}
+              className={`text-zinc-800  text-lg m-2 cursor-pointer ${
+                selectedBadges.includes(sport) && "opacity-50"
+              }`}
+              onClick={() => handleBadgeClick(sport)}
             >
-              <Badge
-                key={sport}
-                // variant={
-                //   selectedBadges.includes(sport) ? "default" : "secondary"
-                // }
-                variant={"secondary"}
-                className={`text-lg m-2 cursor-pointer ${
-                  selectedBadges.includes(sport) && "opacity-50"
-                }`}
-                onClick={() => handleBadgeClick(sport)}
-              >
-                {/* <AnimatePresence> */}
-                {/* <motion.div exit={{ y: "-100vh", opacity: 0, scale: 0.1 }}> */}
-                {sport}
-                {/* </motion.div> */}
-                {/* </AnimatePresence> */}
-              </Badge>
-            </motion.div>
+              {sport}
+            </Badge>
+            // </motion.div>
           ))}
       </CardContent>
     </Card>
