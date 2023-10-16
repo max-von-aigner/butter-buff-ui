@@ -28,16 +28,20 @@ import { motion, AnimatePresence, useSpring } from "framer-motion";
 import { exit } from "process";
 
 interface TagCardProps {
+  onBadgeSelect: (badgeName: string) => void;
+  onBadgeDeselect: (badgeName: string) => void;
+  selectedBadges: string[];
+  orderedDeselectedBadges: string[];
   className?: string;
 }
 
-const TagCard: React.FC<
-  TagCardProps & {
-    onBadgeSelect: (badgeName: string) => void;
-    onBadgeDeselect: (badgeName: string) => void;
-    selectedBadges: string[];
-  }
-> = ({ className, onBadgeSelect, onBadgeDeselect, selectedBadges }) => {
+const TagCard: React.FC<TagCardProps> = ({
+  className,
+  onBadgeSelect,
+  onBadgeDeselect,
+  selectedBadges,
+  orderedDeselectedBadges,
+}) => {
   const handleBadgeClick = (badgeName: string) => {
     if (selectedBadges.includes(badgeName)) {
       onBadgeDeselect(badgeName);
@@ -84,38 +88,28 @@ const TagCard: React.FC<
         <Separator />
       </CardHeader>
 
-      <CardContent className="">
-        {[
-          "Basketball",
-          "Football",
-          "Tennis",
-          "Volleyball",
-          "Baseball",
-          "American Football",
-          "Cricket",
-          "Table Tennis" /* Add more sports */,
-        ]
-          .filter((badge) => !selectedBadges.includes(badge)) // Filtering out the selected badges
-          .map((badge) => (
-            // <motion.div
-            //   variants={dropIn}
+      {/* <CardContent className="">
+        {deselectedBadges?.filter((badge) => !selectedBadges.includes(badge)) ||
+          [].map((badge) => ( */}
+      {/* // <motion.div */}
+      {/* //   variants={dropIn}
             //   initial="hidden"
             //   animate="visible"
             //   style={{ display: "inline-block" }}
             //   whileHover={{ scale: 1.1 }}
-            // >
-            <Badge
-              key={badge}
-              variant={selectedBadges.includes(badge) ? "default" : "secondary"}
-              className={`text-zinc-800  text-lg m-2 cursor-pointer ${
-                selectedBadges.includes(badge) && "opacity-50"
-              }`}
-              onClick={() => handleBadgeClick(badge)}
-            >
-              {badge}
-            </Badge>
-            // </motion.div>
-          ))}
+            // > */}
+
+      <CardContent>
+        {orderedDeselectedBadges.map((badge) => (
+          <Badge
+            key={badge}
+            variant={"secondary"}
+            className={`text-zinc-800 text-lg m-2 cursor-pointer`}
+            onClick={() => handleBadgeClick(badge)}
+          >
+            {badge}
+          </Badge>
+        ))}
       </CardContent>
     </Card>
   );

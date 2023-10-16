@@ -21,17 +21,22 @@ const TagPicker = () => {
   const handleBadgeSelect = (badgeName: string) => {
     if (!selectedBadges.includes(badgeName)) {
       setSelectedBadges([...selectedBadges, badgeName]);
+      // Remove badge from the orderedDeselectedBadges list when it's selected
+      setOrderedDeselectedBadges((prevBadges) =>
+        prevBadges.filter((badge) => badge !== badgeName)
+      );
     }
   };
 
   const handleBadgeDeselect = (badgeName: string) => {
-    setSelectedBadges(selectedBadges.filter((badge) => badge !== badgeName));
+    setSelectedBadges((prevBadges) =>
+      prevBadges.filter((badge) => badge !== badgeName)
+    );
+    setOrderedDeselectedBadges((prevBadges) => [...prevBadges, badgeName]);
     console.log("badge deselected");
   };
 
-  useEffect(() => {
-    console.log("TagPicker rendered!");
-  });
+  console.log("TagPicker rendered!");
 
   return (
     <main className="h-screen w-full grid grid-cols-10 grid-rows-6 gap-16 relative bg-black">
@@ -39,6 +44,7 @@ const TagPicker = () => {
         onBadgeSelect={handleBadgeSelect}
         onBadgeDeselect={handleBadgeDeselect}
         selectedBadges={selectedBadges}
+        orderedDeselectedBadges={orderedDeselectedBadges} // Pass the orderedDeselectedBadges to TagCardLeft
       />
       <TagCardRight
         selectedBadges={selectedBadges}
