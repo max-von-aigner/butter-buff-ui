@@ -15,6 +15,8 @@ import {
   Users,
 } from "lucide-react";
 
+import React from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -258,3 +260,73 @@ export function DropdownMenuHamster() {
     </DropdownMenu>
   );
 }
+
+///////////////////////////////////////////////////////////
+
+// const AnimatedMenuItem = ({
+//   icon: Icon,
+//   label,
+//   shortcut,
+//   disabled = false,
+// }) => (
+//   <motion.div
+//     className="box"
+//     whileHover={{ scale: 1.1 }}
+//     transition={{ type: "spring", stiffness: 400, damping: 10 }}
+//   >
+//     <DropdownMenuItem disabled={disabled}>
+//       <Icon className="mr-2 h-4 w-4" />
+//       <span>{label}</span>
+//       {shortcut && <DropdownMenuShortcut>{shortcut}</DropdownMenuShortcut>}
+//     </DropdownMenuItem>
+//   </motion.div>
+// );
+
+// export function DropdownMenuHamster() {
+//   const menuItems = [
+//     { icon: User, label: "Profile", shortcut: "⇧⌘P" },
+//     { icon: CreditCard, label: "Billing", shortcut: "⌘B" },
+//     { icon: Settings, label: "Settings", shortcut: "⌘S" },
+//     { icon: Keyboard, label: "Keyboard shortcuts", shortcut: "⌘K" },
+//     { icon: Users, label: "Team" },
+//     { icon: UserPlus, label: "Invite users" },
+//     { icon: Mail, label: "Email" },
+//     { icon: MessageSquare, label: "Message" },
+//     { icon: PlusCircle, label: "More..." },
+//     { icon: Plus, label: "New Team", shortcut: "⌘+T" },
+//     { icon: Github, label: "GitHub" },
+//     { icon: LifeBuoy, label: "Support" },
+//     { icon: Cloud, label: "API", disabled: true },
+//     { icon: LogOut, label: "Log out", shortcut: "⇧⌘Q" },
+//   ];
+
+//   return (
+//     <DropdownMenu>
+//       <DropdownMenuTrigger asChild>
+//         <Button variant="outline">Open</Button>
+//       </DropdownMenuTrigger>
+//       <AnimatePresence>
+//         <motion.div
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           exit={{ opacity: 0 }}
+//         >
+//           <DropdownMenuContent className="w-56">
+//             <DropdownMenuLabel>My Account</DropdownMenuLabel>
+//             <DropdownMenuSeparator />
+//             <DropdownMenuGroup>
+//               {menuItems.map((item, idx) => (
+//                 <React.Fragment key={item.label}>
+//                   <AnimatedMenuItem {...item} />
+//                   {(idx === 3 || idx === 9 || idx === 12) && (
+//                     <DropdownMenuSeparator />
+//                   )}
+//                 </React.Fragment>
+//               ))}
+//             </DropdownMenuGroup>
+//           </DropdownMenuContent>
+//         </motion.div>
+//       </AnimatePresence>
+//     </DropdownMenu>
+//   );
+// }

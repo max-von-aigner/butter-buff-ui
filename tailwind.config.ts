@@ -52,6 +52,9 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      dropShadow: {
+        neo: "0.5rem 0.5rem 0 rgba(0, 0, 0, 1)",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

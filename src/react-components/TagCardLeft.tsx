@@ -95,8 +95,8 @@ const TagCard: React.FC<
           "Cricket",
           "Table Tennis" /* Add more sports */,
         ]
-          .filter((sport) => !selectedBadges.includes(sport)) // Filtering out the selected badges
-          .map((sport) => (
+          .filter((badge) => !selectedBadges.includes(badge)) // Filtering out the selected badges
+          .map((badge) => (
             // <motion.div
             //   variants={dropIn}
             //   initial="hidden"
@@ -105,14 +105,14 @@ const TagCard: React.FC<
             //   whileHover={{ scale: 1.1 }}
             // >
             <Badge
-              key={sport}
-              variant={selectedBadges.includes(sport) ? "default" : "secondary"}
+              key={badge}
+              variant={selectedBadges.includes(badge) ? "default" : "secondary"}
               className={`text-zinc-800  text-lg m-2 cursor-pointer ${
-                selectedBadges.includes(sport) && "opacity-50"
+                selectedBadges.includes(badge) && "opacity-50"
               }`}
-              onClick={() => handleBadgeClick(sport)}
+              onClick={() => handleBadgeClick(badge)}
             >
-              {sport}
+              {badge}
             </Badge>
             // </motion.div>
           ))}
