@@ -36,12 +36,6 @@ import {
 
 import { AnimatePresence, motion } from "framer-motion";
 
-const dropIn = {
-  hidden: { y: "-100vh" },
-  visible: { y: "0" },
-  exit: { y: "-100vh" },
-};
-
 // {
 //   hidden: {
 //     y: "-100vh",
@@ -63,198 +57,46 @@ const dropIn = {
 //   },
 // };
 
+const dropIn = {
+  hidden: { y: "-100vh" },
+  visible: { y: "0" },
+  exit: { y: "-100vh" },
+};
+
 export function DropdownMenuHamster() {
-  const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger>
         <Button
           variant="outline"
           onClick={() => {
             console.log("Button clicked");
-            setIsOpen((prev) => !prev);
           }}
         >
           Open
         </Button>
       </DropdownMenuTrigger>
       <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            variants={dropIn}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            // transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <motion.div
-                  className="box"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <DropdownMenuItem>
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
-                    <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                  </DropdownMenuItem>
-                </motion.div>
-
-                <motion.div
-                  className="box"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <DropdownMenuItem>
-                    <CreditCard className="mr-2 h-4 w-4" />
-                    <span>Billing</span>
-                    <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-                  </DropdownMenuItem>
-                </motion.div>
-
-                <motion.div
-                  className="box"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <DropdownMenuItem>
-                    <Settings className="mr-2 h-4 w-4" />
-                    <span>Settings</span>
-                    <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                  </DropdownMenuItem>
-                </motion.div>
-
-                <motion.div
-                  className="box"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <DropdownMenuItem>
-                    <Keyboard className="mr-2 h-4 w-4" />
-                    <span>Keyboard shortcuts</span>
-                    <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                  </DropdownMenuItem>
-                </motion.div>
-              </DropdownMenuGroup>
-
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <motion.div
-                  className="box"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <DropdownMenuItem>
-                    <Users className="mr-2 h-4 w-4" />
-                    <span>Team</span>
-                  </DropdownMenuItem>
-                </motion.div>
-
-                <DropdownMenuSub>
-                  <motion.div
-                    className="box"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  >
-                    <DropdownMenuSubTrigger>
-                      <UserPlus className="mr-2 h-4 w-4" />
-                      <span>Invite users</span>
-                    </DropdownMenuSubTrigger>
-                  </motion.div>
-
-                  <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                      <motion.div
-                        className="box"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 10,
-                        }}
-                      >
-                        <DropdownMenuItem>
-                          <Mail className="mr-2 h-4 w-4" />
-                          <span>Email</span>
-                        </DropdownMenuItem>
-                      </motion.div>
-
-                      <motion.div
-                        className="box"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 10,
-                        }}
-                      >
-                        <DropdownMenuItem>
-                          <MessageSquare className="mr-2 h-4 w-4" />
-                          <span>Message</span>
-                        </DropdownMenuItem>
-                      </motion.div>
-
-                      <DropdownMenuSeparator />
-
-                      <motion.div
-                        className="box"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 10,
-                        }}
-                      >
-                        <DropdownMenuItem>
-                          <Mail className="mr-2 h-4 w-4" />
-                          <span>Email</span>
-                        </DropdownMenuItem>
-                      </motion.div>
-
-                      <motion.div
-                        className="box"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 10,
-                        }}
-                      >
-                        <DropdownMenuItem>
-                          <PlusCircle className="mr-2 h-4 w-4" />
-                          <span>More...</span>
-                        </DropdownMenuItem>
-                      </motion.div>
-                    </DropdownMenuSubContent>
-                  </DropdownMenuPortal>
-                </DropdownMenuSub>
-
-                <motion.div
-                  className="box"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <DropdownMenuItem>
-                    <Plus className="mr-2 h-4 w-4" />
-                    <span>New Team</span>
-                    <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-                  </DropdownMenuItem>
-                </motion.div>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-
+        <motion.div
+          variants={dropIn}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          // transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
+          <DropdownMenuContent className="w-56">
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
               <motion.div
                 className="box"
                 whileHover={{ scale: 1.1 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
                 <DropdownMenuItem>
-                  <Github className="mr-2 h-4 w-4" />
-                  <span>GitHub</span>
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
+                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </motion.div>
 
@@ -264,23 +106,11 @@ export function DropdownMenuHamster() {
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
                 <DropdownMenuItem>
-                  <LifeBuoy className="mr-2 h-4 w-4" />
-                  <span>Support</span>
+                  <CreditCard className="mr-2 h-4 w-4" />
+                  <span>Billing</span>
+                  <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </motion.div>
-
-              <motion.div
-                className="box"
-                whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <DropdownMenuItem disabled>
-                  <Cloud className="mr-2 h-4 w-4" />
-                  <span>API</span>
-                </DropdownMenuItem>
-              </motion.div>
-
-              <DropdownMenuSeparator />
 
               <motion.div
                 className="box"
@@ -288,14 +118,180 @@ export function DropdownMenuHamster() {
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
                 <DropdownMenuItem>
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
-                  <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </motion.div>
-            </DropdownMenuContent>
-          </motion.div>
-        )}
+
+              <motion.div
+                className="box"
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <DropdownMenuItem>
+                  <Keyboard className="mr-2 h-4 w-4" />
+                  <span>Keyboard shortcuts</span>
+                  <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </motion.div>
+            </DropdownMenuGroup>
+
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <motion.div
+                className="box"
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <DropdownMenuItem>
+                  <Users className="mr-2 h-4 w-4" />
+                  <span>Team</span>
+                </DropdownMenuItem>
+              </motion.div>
+
+              <DropdownMenuSub>
+                <motion.div
+                  className="box"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <DropdownMenuSubTrigger>
+                    <UserPlus className="mr-2 h-4 w-4" />
+                    <span>Invite users</span>
+                  </DropdownMenuSubTrigger>
+                </motion.div>
+
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <motion.div
+                      className="box"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 10,
+                      }}
+                    >
+                      <DropdownMenuItem>
+                        <Mail className="mr-2 h-4 w-4" />
+                        <span>Email</span>
+                      </DropdownMenuItem>
+                    </motion.div>
+
+                    <motion.div
+                      className="box"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 10,
+                      }}
+                    >
+                      <DropdownMenuItem>
+                        <MessageSquare className="mr-2 h-4 w-4" />
+                        <span>Message</span>
+                      </DropdownMenuItem>
+                    </motion.div>
+
+                    <DropdownMenuSeparator />
+
+                    <motion.div
+                      className="box"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 10,
+                      }}
+                    >
+                      <DropdownMenuItem>
+                        <Mail className="mr-2 h-4 w-4" />
+                        <span>Email</span>
+                      </DropdownMenuItem>
+                    </motion.div>
+
+                    <motion.div
+                      className="box"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 10,
+                      }}
+                    >
+                      <DropdownMenuItem>
+                        <PlusCircle className="mr-2 h-4 w-4" />
+                        <span>More...</span>
+                      </DropdownMenuItem>
+                    </motion.div>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
+
+              <motion.div
+                className="box"
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <DropdownMenuItem>
+                  <Plus className="mr-2 h-4 w-4" />
+                  <span>New Team</span>
+                  <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </motion.div>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+
+            <motion.div
+              className="box"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <DropdownMenuItem>
+                <Github className="mr-2 h-4 w-4" />
+                <span>GitHub</span>
+              </DropdownMenuItem>
+            </motion.div>
+
+            <motion.div
+              className="box"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <DropdownMenuItem>
+                <LifeBuoy className="mr-2 h-4 w-4" />
+                <span>Support</span>
+              </DropdownMenuItem>
+            </motion.div>
+
+            <motion.div
+              className="box"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <DropdownMenuItem disabled>
+                <Cloud className="mr-2 h-4 w-4" />
+                <span>API</span>
+              </DropdownMenuItem>
+            </motion.div>
+
+            <DropdownMenuSeparator />
+
+            <motion.div
+              className="box"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <DropdownMenuItem>
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>Log out</span>
+                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </motion.div>
+          </DropdownMenuContent>
+        </motion.div>
+        {/* )} */}
       </AnimatePresence>
     </DropdownMenu>
   );
