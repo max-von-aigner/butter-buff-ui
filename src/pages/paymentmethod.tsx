@@ -31,10 +31,19 @@ import {
 
 import { motion } from "framer-motion";
 import { Scale } from "lucide-react";
+import PaymentMethodCard from "@/react-components/PaymentMethodCard";
 
-export default function DemoPaymentMethod() {
+interface DemoPaymentMethodProps {
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const DemoPaymentMethod: React.FC<DemoPaymentMethodProps> = ({ style }) => {
   return (
-    <main className="grid place-items-center h-screen bg-gradient-to-b  from-violet-500 to-fuchsia-500">
+    <main
+      className="grid place-items-center h-screen bg-gradient-to-b from-violet-500 to-fuchsia-500 snap-center"
+      style={style}
+    >
       <motion.div
         drag
         // dragConstraints={{
@@ -175,4 +184,6 @@ export default function DemoPaymentMethod() {
       </motion.div>
     </main>
   );
-}
+};
+
+export default DemoPaymentMethod;

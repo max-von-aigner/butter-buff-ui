@@ -11,7 +11,6 @@ interface TagPickerProps {
 
 const TagPicker: React.FC<TagPickerProps> = ({ style }) => {
   const [selectedBadges, setSelectedBadges] = useState<string[]>([]);
-
   const [orderedDeselectedBadges, setOrderedDeselectedBadges] = useState<
     string[]
   >([
@@ -22,7 +21,7 @@ const TagPicker: React.FC<TagPickerProps> = ({ style }) => {
     "Baseball",
     "American Football",
     "Cricket",
-    "Table Tennis", // Add more sports if needed
+    "Table Tennis",
   ]);
 
   const handleBadgeSelect = (badgeName: string) => {
@@ -47,7 +46,7 @@ const TagPicker: React.FC<TagPickerProps> = ({ style }) => {
 
   return (
     <main
-      className="h-screen w-full grid place-content-center  relative bg-gradient-to-b from-cyan-500 to-blue-500 snap-center"
+      className="h-screen w-full grid place-content-center relative bg-gradient-to-b from-cyan-500 to-blue-500 snap-center"
       style={style}
     >
       <div className="flex gap-12">

@@ -1,4 +1,4 @@
-import { DropdownMenuHamster } from "@/react-components/DropdownnMenu";
+import { DropdownMenuHamster } from "@/react-components/DropdownMenu";
 
 export default function page() {
   return (

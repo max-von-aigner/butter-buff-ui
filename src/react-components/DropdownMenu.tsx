@@ -66,7 +66,7 @@ const dropIn = {
 
 export function DropdownMenuHamster() {
   return (
-    <main className="h-screen w-full flex justify-center bg-gradient-to-b  from-emerald-500 to-cyan-500">
+    <main className="h-screen w-full flex justify-center bg-gradient-to-b  from-emerald-500 to-cyan-500 snap-center">
       <DropdownMenu>
         <DropdownMenuTrigger>
           <Button

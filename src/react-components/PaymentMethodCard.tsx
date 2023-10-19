@@ -19,9 +19,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const PaymentMethodCard = () => {
+interface PaymentMethoCardProps {
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const PaymentMethodCard: React.FC<PaymentMethoCardProps> = ({ style }) => {
   return (
-    <main className="h-screen w-full grid place-content-center  relative bg-gradient-to-b from-blue-500 to-violet-500 ">
+    <main
+      className="h-screen w-full grid place-content-center relative bg-gradient-to-b from-blue-500 to-violet-500 snap-center"
+      style={style}
+    >
       <Card className="w-[24rem]">
         <CardHeader>
           <CardTitle>Payment Method</CardTitle>
