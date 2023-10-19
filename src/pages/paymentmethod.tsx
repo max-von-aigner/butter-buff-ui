@@ -30,10 +30,11 @@ import {
 } from "@/components/ui/select";
 
 import { motion } from "framer-motion";
+import { Scale } from "lucide-react";
 
 export default function DemoPaymentMethod() {
   return (
-    <main className="grid place-items-center h-screen relative bg-gradient-to-r  from-lime-500 to-emerald-500">
+    <main className="grid place-items-center h-screen bg-gradient-to-b  from-violet-500 to-fuchsia-500">
       <motion.div
         drag
         // dragConstraints={{
@@ -42,8 +43,13 @@ export default function DemoPaymentMethod() {
         //   right: 50,
         //   bottom: 50,
         // }}
+        whileDrag={{
+          scale: 0.8,
+          //   opacity: [0.5, 0, 1, ],
+          transition: { duration: 0.08 },
+        }}
       >
-        <Card className=" ">
+        <Card className=" w-[24rem] ">
           <CardHeader>
             <CardTitle>Payment Method</CardTitle>
             <CardDescription>

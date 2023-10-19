@@ -60,12 +60,14 @@ const TagCardRight: React.FC<
   TagCardRightProps & { selectedBadges: string[] }
 > = ({ className, selectedBadges, onBadgeDeselect }) => {
   return (
-    <Card className="col-start-6 col-span-3 row-start-3 row-span-4">
+    <Card className=" h-[32rem] w-[24rem]">
       <CardHeader>
         <CardTitle className="text-center text-zinc-800 ">
           Your Sports
         </CardTitle>
-        <CardDescription className=" text-center"></CardDescription>
+        <CardDescription className=" text-center">
+          We will show you content, based on your selection
+        </CardDescription>
         <Separator />
       </CardHeader>
 

@@ -77,13 +77,13 @@ const TagCard: React.FC<TagCardProps> = ({
   };
 
   return (
-    <Card className=" col-start-3 col-span-3 row-start-3 row-span-4 bg-opacity-50 backdrop-blur-md">
+    <Card className="  h-[32rem] w-[24rem]   bg-card">
       <CardHeader>
         <CardTitle className=" text-center text-zinc-800 ">
           Select Sports
         </CardTitle>
         <CardDescription className=" text-center">
-          Pick all the sports you want to see content of!
+          Pick all the sports you're interested in!
         </CardDescription>
         <Separator />
       </CardHeader>
