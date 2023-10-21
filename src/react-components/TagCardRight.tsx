@@ -48,10 +48,10 @@ const dropIn = {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.1,
+      duration: 0.05,
       type: "spring",
-      damping: 20,
-      stiffness: 200,
+      damping: 15,
+      stiffness: 300,
     },
   },
 };

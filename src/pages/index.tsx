@@ -3,6 +3,10 @@ import DemoPaymentMethod from "./paymentmethod";
 import TagPicker from "@/react-components/TagPicker";
 import PaymentMethodCard from "@/react-components/PaymentMethodCard";
 import DropdownMenuAnimated from "@/react-components/DropdownMenu";
+import Navbar from "@/react-components/Navbar";
+import NextComponentBackground from "@/react-components/NextComponentBackground";
+import NextComponentBackgroundTwo from "@/react-components/2NextComponentBackground";
+import { motion, useScroll, useSpring } from "framer-motion";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +15,12 @@ export default function Home() {
     <main className="h-screen w-full overflow-y-scroll snap-y snap-mandatory">
       <DropdownMenuAnimated />
       <TagPicker />
-      <PaymentMethodCard />
+      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
+        <PaymentMethodCard />
+      </motion.div>
+      <Navbar />
+      <NextComponentBackground />
+      <NextComponentBackgroundTwo />
     </main>
   );
 }
