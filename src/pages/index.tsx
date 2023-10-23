@@ -6,7 +6,12 @@ import DropdownMenuAnimated from "@/react-components/DropdownMenu";
 import Navbar from "@/react-components/Navbar";
 import NextComponentBackground from "@/react-components/NextComponentBackground";
 import NextComponentBackgroundTwo from "@/react-components/2NextComponentBackground";
-import { motion, useScroll, useSpring } from "framer-motion";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 
 const inter = Inter({ subsets: ["latin"] });
 
