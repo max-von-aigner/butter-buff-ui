@@ -74,11 +74,6 @@ const Navbar: React.FC = (props) => {
         id="scroll-text"
         ref={ref}
       >
-        {/* <motion.div
-          className="progress-bar top-[10vh] w-[80vw] left-0 right-0 h-10 bg-red-500"
-          style={{ scaleX, transformOrigin: "0%" }}
-        /> */}
-
         <motion.div
           variants={{
             hidden: { opacity: 0, y: 75 },
