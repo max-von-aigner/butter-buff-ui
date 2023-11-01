@@ -9,6 +9,47 @@ import {
   useAnimation,
 } from "framer-motion";
 
+interface AnimatedDivProps {
+  children: React.ReactNode;
+  delay?: number;
+}
+
+export const AnimatedDiv: FC<AnimatedDivProps> = ({ children, delay = 0 }) => {
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: false });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start({ opacity: 1, x: 0 });
+    } else {
+      controls.start({ opacity: 0, x: "100vw" });
+    }
+  }, [inView, controls]);
+
+  return (
+    <motion.div
+      ref={ref}
+      // initial={{ opacity: 0, x: "100vw" }}
+      animate={controls}
+      transition={{
+        x: {
+          type: "tween",
+          ease: "easeOut",
+          duration: 1,
+          delay: delay,
+        },
+        opacity: {
+          duration: 0.5,
+          delay: delay,
+        },
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
 const Navbar: React.FC = (props) => {
   const { scrollYProgress } = useScroll();
 
@@ -18,6 +59,7 @@ const Navbar: React.FC = (props) => {
   const mainControls = useAnimation();
 
   useEffect(() => {
+    console.log("Is in view:", isInView);
     if (isInView) {
       mainControls.start("visible");
     }
@@ -70,27 +112,15 @@ const Navbar: React.FC = (props) => {
       </div>
 
       <div
-        className=" p-4 text-[250px] h-screen w-[80vw] flex flex-col place-items-center absolute inset-x-0 top-0 pt-32 border-transparent border-4 px-44 text-left mx-auto text-violet-200 bg-scroll overflow-y-auto"
+        className=" p-4 text-[250px] h-screen w-[80vw] flex flex-col place-items-center absolute inset-x-0 top-0 pt-32 border-transparent border-4 px-44 text-left mx-auto text-violet-200 bg-scroll overflow-auto"
         id="scroll-text"
-        ref={ref}
       >
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 75 },
-            visible: { opacity: 100, y: 0 },
-          }}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.5, bounce: 1, delay: 0.25 }}
-        >
-          Scroll.
-        </motion.div>
-        <div>Animations.</div>
-        <div>Are.</div>
-        <div>Cool.</div>
-        <div id="spacer-div-navbar" className="h-[100vh]">
-          Space
-        </div>
+        <AnimatedDiv delay={0}>Scroll.</AnimatedDiv>
+        <AnimatedDiv delay={0.2}>Animations.</AnimatedDiv>
+        <AnimatedDiv delay={0.4}>Are.</AnimatedDiv>
+        <AnimatedDiv delay={0.6}>Cool.</AnimatedDiv>
+
+        <div id="spacer-div-navbar" className="h-[100vh]"></div>
       </div>
     </main>
   );
