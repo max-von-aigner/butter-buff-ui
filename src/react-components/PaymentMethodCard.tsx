@@ -22,17 +22,55 @@ import {
 
 import { motion } from "framer-motion";
 
-type MotionWrapperProps = {
+type MotionWrapperScaleTiltProps = {
   children: ReactNode;
 };
 
-const MotionWrapper: React.FC<MotionWrapperProps> = ({ children }) => {
+const MotionWrapperScaleTilt: React.FC<MotionWrapperScaleTiltProps> = ({
+  children,
+}) => {
   return (
     <motion.div
-      className="box"
-      whileHover={{ scale: 1.08 }}
+      whileHover={{ scale: 1.1, rotate: "7deg" }}
       transition={{ type: "spring", stiffness: 300, damping: 12 }}
     >
+      {children}
+    </motion.div>
+  );
+};
+
+type MotionWrapperScaleProps = {
+  children: ReactNode;
+};
+
+const MotionWrapperScale: React.FC<MotionWrapperScaleProps> = ({
+  children,
+}) => {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.2, backgroundColor: "transparent" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 12,
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+type MotionWrapperTapRotateProps = {
+  children: ReactNode;
+  className?: string;
+};
+
+const MotionWrapperTapRotate: React.FC<MotionWrapperTapRotateProps> = ({
+  children,
+  className,
+}) => {
+  return (
+    <motion.div whileTap={{ backgroundColor: "transparent" }}>
       {children}
     </motion.div>
   );
@@ -59,7 +97,7 @@ const PaymentMethodCard: React.FC<PaymentMethoCardProps> = ({ style }) => {
         <CardContent className="grid gap-6">
           <RadioGroup defaultValue="card" className="grid grid-cols-3 gap-4">
             <div>
-              <MotionWrapper>
+              <MotionWrapperScaleTilt>
                 <RadioGroupItem
                   value="card"
                   id="card"
@@ -84,10 +122,10 @@ const PaymentMethodCard: React.FC<PaymentMethoCardProps> = ({ style }) => {
                   </svg>
                   Card
                 </Label>
-              </MotionWrapper>
+              </MotionWrapperScaleTilt>
             </div>
             <div>
-              <MotionWrapper>
+              <MotionWrapperScaleTilt>
                 <RadioGroupItem
                   value="paypal"
                   id="paypal"
@@ -100,10 +138,10 @@ const PaymentMethodCard: React.FC<PaymentMethoCardProps> = ({ style }) => {
                   <Icons.paypal className="mb-3 h-6 w-6" />
                   Paypal
                 </Label>
-              </MotionWrapper>
+              </MotionWrapperScaleTilt>
             </div>
             <div>
-              <MotionWrapper>
+              <MotionWrapperScaleTilt>
                 <RadioGroupItem
                   value="apple"
                   id="apple"
@@ -117,7 +155,7 @@ const PaymentMethodCard: React.FC<PaymentMethoCardProps> = ({ style }) => {
                   <Icons.apple className="mb-3 h-6 w-6" />
                   Apple
                 </Label>
-              </MotionWrapper>
+              </MotionWrapperScaleTilt>
             </div>
           </RadioGroup>
           <div className="grid gap-2">
@@ -136,18 +174,42 @@ const PaymentMethodCard: React.FC<PaymentMethoCardProps> = ({ style }) => {
                   <SelectValue placeholder="Month" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="1">January</SelectItem>
-                  <SelectItem value="2">February</SelectItem>
-                  <SelectItem value="3">March</SelectItem>
-                  <SelectItem value="4">April</SelectItem>
-                  <SelectItem value="5">May</SelectItem>
-                  <SelectItem value="6">June</SelectItem>
-                  <SelectItem value="7">July</SelectItem>
-                  <SelectItem value="8">August</SelectItem>
-                  <SelectItem value="9">September</SelectItem>
-                  <SelectItem value="10">October</SelectItem>
-                  <SelectItem value="11">November</SelectItem>
-                  <SelectItem value="12">December</SelectItem>
+                  <MotionWrapperScale>
+                    <SelectItem value="1">January</SelectItem>
+                  </MotionWrapperScale>
+                  <MotionWrapperScale>
+                    <SelectItem value="2">February</SelectItem>
+                  </MotionWrapperScale>
+                  <MotionWrapperScale>
+                    <SelectItem value="3">March</SelectItem>
+                  </MotionWrapperScale>
+                  <MotionWrapperScale>
+                    <SelectItem value="4">April</SelectItem>
+                  </MotionWrapperScale>
+                  <MotionWrapperScale>
+                    <SelectItem value="5">May</SelectItem>
+                  </MotionWrapperScale>
+                  <MotionWrapperScale>
+                    <SelectItem value="6">June</SelectItem>
+                  </MotionWrapperScale>
+                  <MotionWrapperScale>
+                    <SelectItem value="7">July</SelectItem>
+                  </MotionWrapperScale>
+                  <MotionWrapperScale>
+                    <SelectItem value="8">August</SelectItem>
+                  </MotionWrapperScale>
+                  <MotionWrapperScale>
+                    <SelectItem value="9">September</SelectItem>
+                  </MotionWrapperScale>
+                  <MotionWrapperScale>
+                    <SelectItem value="10">October</SelectItem>
+                  </MotionWrapperScale>
+                  <MotionWrapperScale>
+                    <SelectItem value="11">November</SelectItem>
+                  </MotionWrapperScale>
+                  <MotionWrapperScale>
+                    <SelectItem value="12">December</SelectItem>
+                  </MotionWrapperScale>
                 </SelectContent>
               </Select>
             </div>
@@ -157,14 +219,17 @@ const PaymentMethodCard: React.FC<PaymentMethoCardProps> = ({ style }) => {
                 <SelectTrigger id="year">
                   <SelectValue placeholder="Year" />
                 </SelectTrigger>
+
                 <SelectContent>
                   {Array.from({ length: 10 }, (_, i) => (
-                    <SelectItem
-                      key={i}
-                      value={`${new Date().getFullYear() + i}`}
-                    >
-                      {new Date().getFullYear() + i}
-                    </SelectItem>
+                    <MotionWrapperScale>
+                      <SelectItem
+                        key={i}
+                        value={`${new Date().getFullYear() + i}`}
+                      >
+                        {new Date().getFullYear() + i}
+                      </SelectItem>
+                    </MotionWrapperScale>
                   ))}
                 </SelectContent>
               </Select>
